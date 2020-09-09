@@ -25,10 +25,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _isrRtl = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultAppBar(), // This trailing comma makes auto-formatting nicer for build methods.
+    return Directionality(
+      textDirection: _isrRtl ? TextDirection.ltr : TextDirection.rtl,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Text(_isrRtl ? "LTR" : "RTL"),
+          onPressed: () {
+            setState(() {
+              _isrRtl = !_isrRtl;
+            });
+          },
+        ),
+        appBar:
+            DefaultAppBar(), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
